@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+
+<head>
+
+    <title>Redirecting you to reddit.com</title>
+
+</head>
+
+<body onload="redirectToReddit()">
+
+    <script>
+    
+        function redirectToReddit() {
+
+            //var pathName = window.location.pathname;
+            var pathName = 'https://www.reddit.com/r/AskALiberal/comments/khpgsc/have_the_last_few_years_made_you_start_to_hate/ggmcch1?utm_source=share&utm_medium=web2x&context=3';
+                
+            var jsonUrl = pathName.replace('?', '.json?');
+
+            var redirectUrl = '';
+
+            fetch(jsonUrl)
+            .then(res => res.json())
+            .then((out) => {
+                redirectUrl = 'https://www.reddit.com/r/MeetPeople/submit?selftext=true&text=' + encodeURIComponent(out[1].data.children[0].data.body);
+                alert(redirectUrl);
+                window.location.replace(redirectUrl);
+            })
+            .catch(err => { throw err });
+        }
+
+    </script>
+
+</body>
