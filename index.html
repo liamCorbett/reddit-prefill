@@ -21,6 +21,8 @@
             let endBefore = currentUrl.searchParams.get('endBefore') || null;      // Series of characters to indicated end of prefill text
 
             let redirectUrl = '';
+            
+            console.log({'referenceUrl': referenceUrl, 'subreddit': subreddit, 'startAfter': startAfter, 'startBefore': startBefore});
 
             fetch(jsonUrl)
             .then(res => res.json())
