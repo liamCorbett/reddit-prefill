@@ -24,7 +24,7 @@
             
             console.log({'referenceUrl': referenceUrl, 'subreddit': subreddit, 'startAfter': startAfter, 'startBefore': startBefore});
 
-            fetch(jsonUrl)
+            fetch(referenceJson)
             .then(res => res.json())
             .then((out) => {
                 redirectUrl = 
