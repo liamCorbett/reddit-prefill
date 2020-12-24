@@ -11,22 +11,28 @@
     <script>
     
         function redirectToReddit() {
+            
+            let currentUrl = new URL(window.location.href);
 
-            //var pathName = window.location.pathname;
-            var pathName = 'https://www.reddit.com/r/AskALiberal/comments/khpgsc/have_the_last_few_years_made_you_start_to_hate/ggmcch1?utm_source=share&utm_medium=web2x&context=3';
-                
-            var jsonUrl = pathName.replace('?', '.json?');
+            let referenceUrl = currentUrl.searchParams.get('referenceUrl');        // Comment to pull prefill text from
+            let subreddit = currentUrl.searchParams.get('subreddit');              // Subreddit to post to
+            let startAfter = currentUrl.searchParams.get('startAfter') || null;    // Series of characters to indicate start of prefill text
+            let endBefore = currentUrl.searchParams.get('endBefore') || null;      // Series of characters to indicated end of prefill text
 
-            var redirectUrl = '';
+            let redirectUrl = '';
 
             fetch(jsonUrl)
             .then(res => res.json())
             .then((out) => {
-                redirectUrl = 'https://www.reddit.com/r/MeetPeople/submit?selftext=true&text=' + encodeURIComponent(out[1].data.children[0].data.body);
-                alert(redirectUrl);
+                redirectUrl = 
+                    'https://www.reddit.com/r/' + 
+                    subreddit + 
+                    '/submit?selftext=true&text=' + 
+                    encodeURIComponent(out[1].data.children[0].data.body);
                 window.location.replace(redirectUrl);
             })
             .catch(err => { throw err });
+
         }
 
     </script>
