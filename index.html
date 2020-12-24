@@ -15,6 +15,7 @@
             let currentUrl = new URL(window.location.href);
 
             let referenceUrl = currentUrl.searchParams.get('referenceUrl');        // Comment to pull prefill text from
+            let referenceJson = referenceUrl.replace('?', '.json?');
             let subreddit = currentUrl.searchParams.get('subreddit');              // Subreddit to post to
             let startAfter = currentUrl.searchParams.get('startAfter') || null;    // Series of characters to indicate start of prefill text
             let endBefore = currentUrl.searchParams.get('endBefore') || null;      // Series of characters to indicated end of prefill text
